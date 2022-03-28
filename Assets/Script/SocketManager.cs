@@ -34,10 +34,6 @@ public class SocketManager : MonoBehaviour
             m_Socket.Send(JsonUtility.ToJson(positionData));
         }
     }
-    public void Connect()
-    {
-
-    }
 
     public void Recv(object sender, MessageEventArgs e)
     {
