@@ -14,8 +14,9 @@ public class PositionData
 
 public class SocketManager : MonoBehaviour
 {
-    public static WebSocketSharp.WebSocket m_Socket = null;
-    PositionData positionData;
+    //public static WebSocketSharp.WebSocket m_Socket = null;
+    //PositionData positionData;
+    /*
     private void Start()
     {
         positionData = new PositionData();
@@ -34,7 +35,7 @@ public class SocketManager : MonoBehaviour
             m_Socket.Send(JsonUtility.ToJson(positionData));
         }
     }
-
+    */
     public void Recv(object sender, MessageEventArgs e)
     {
         Debug.Log(e.Data);
