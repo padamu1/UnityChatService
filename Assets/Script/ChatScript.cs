@@ -11,4 +11,10 @@ public class ChatScript : MonoBehaviour
         Debug.Log(text);
         this.text.text = newText;
     }
+
+    void ChangeSize(int size)
+    {
+        text.fontSize = size;
+    }
 }
+

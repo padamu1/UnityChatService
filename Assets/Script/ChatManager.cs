@@ -23,12 +23,13 @@ public class ChatController
     //Please initialize this value before execute SetChatLog function
     public void SetMaxLogSize(int maxLogSize)
     {
+        Debug.Log(maxLogSize);
         this.maxLogSize = maxLogSize;
 
         // execute below code if maxLogSize is different from before
         if (maxLogSize < chatLog.Count)
         {
-            for(int i = 0; i < chatLog.Count - maxLogSize; i++)
+            for(int i = 0; i <= chatLog.Count - maxLogSize; i++)
             {
                 GameObject.Destroy(chatLog[0]);
                 chatLog.RemoveAt(0);
@@ -47,27 +48,40 @@ public class ChatController
         }
 
     }
+
+    public void ChangeTextSize(int textSize)
+    {
+        foreach(GameObject sample in chatLog)
+        {
+            sample.SendMessage("ChangeSize", textSize);
+        }
+    }
+
 }
 
 public class ChatManager : MonoBehaviour
 {
-    public static WebSocketSharp.WebSocket m_Socket = null;
-
+    public Slider textSizeSlider;
+    private WebSocketSharp.WebSocket m_Socket = null;
+    public static ChatManager instance = null;
     public Transform chatField;
     public GameObject chatText;
     public InputField mainInputField;
     private List<string> newChat;
     private Data data;
-    private ChatController chatController;
+    public ChatController chatController;
     void Awake()
     {
         chatController = new ChatController();
         chatController.SetMaxLogSize(3);
         newChat = new List<string>();
+        textSizeSlider.value = 20;
     }
 
     public void Start()
     {
+        if (instance == null)
+            instance = this;
         m_Socket = new WebSocketSharp.WebSocket("ws://localhost:3000");
         m_Socket.OnMessage += Recv;
         m_Socket.Connect();
@@ -75,6 +89,10 @@ public class ChatManager : MonoBehaviour
         mainInputField.onEndEdit.AddListener(var => { 
             if(Input.GetKeyDown(KeyCode.Return) || Input.GetKeyDown(KeyCode.KeypadEnter))
                 LockInput(mainInputField); 
+        });
+        textSizeSlider.onValueChanged.AddListener(delegate
+        {
+            chatController.ChangeTextSize((int)textSizeSlider.value);
         });
     }
 
@@ -96,6 +114,7 @@ public class ChatManager : MonoBehaviour
 
         GameObject tempObject = Instantiate(chatText, chatField);
         tempObject.SendMessage("SetText", text);
+        tempObject.SendMessage("ChangeSize", (int)textSizeSlider.value);
         chatController.SetChatLog(tempObject);
         newChat.RemoveAt(0);
     }
