@@ -1313,7 +1313,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1016396317}
   - component: {fileID: 1016396318}
-  - component: {fileID: 1016396319}
   m_Layer: 5
   m_Name: MaxTextToggle
   m_TagString: Untagged
@@ -1356,21 +1355,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_AllowSwitchOff: 0
---- !u!114 &1016396319
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1016396316}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1b13b86af694b9b4989e3d519177df3b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toggleOptOne: {fileID: 1140103617}
-  toggleOptTwo: {fileID: 2055363142}
-  toggleOptTrd: {fileID: 161749043}
 --- !u!1 &1140103615
 GameObject:
   m_ObjectHideFlags: 0
@@ -2547,9 +2531,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   textSizeSlider: {fileID: 1825364417}
+  minValue: 0
+  maxValue: 30
   chatField: {fileID: 1993192671}
   chatText: {fileID: 6746827694610321488, guid: 05819fe0b50c19a4ea34e1f179f69ee4, type: 3}
   mainInputField: {fileID: 631815279}
+  toggleOptOne: {fileID: 1140103617}
+  toggleOneLabel: {fileID: 1266484923}
+  toggleOptTwo: {fileID: 2055363142}
+  toggleTwoLabel: {fileID: 1273641569}
+  toggleOptTrd: {fileID: 161749043}
+  toggleTrdLabel: {fileID: 1887841528}
+  toggleOneValue: 1
+  toggleTwoValue: 2
+  toggleTrdValue: 3
 --- !u!4 &1980333427
 Transform:
   m_ObjectHideFlags: 0

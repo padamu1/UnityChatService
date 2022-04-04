@@ -15,26 +15,43 @@ public class Data
 public class ChatManager : MonoBehaviour
 {
     public Slider textSizeSlider;
-    private WebSocketSharp.WebSocket m_Socket = null;
-    public static ChatManager instance = null;
+    public float minValue;
+    public float maxValue;
     public Transform chatField;
     public GameObject chatText;
     public InputField mainInputField;
+
+    public Toggle toggleOptOne;
+    public Text toggleOneLabel;
+    public Toggle toggleOptTwo;
+    public Text toggleTwoLabel;
+    public Toggle toggleOptTrd;
+    public Text toggleTrdLabel;
+
+    public int toggleOneValue;
+    public int toggleTwoValue;
+    public int toggleTrdValue;
+
     private List<string> newChat;
     private Data data;
-    public ChatController chatController;
+    private ChatController chatController;
+    private WebSocketSharp.WebSocket m_Socket = null;
+
     void Awake()
     {
         chatController = new ChatController();
         chatController.SetMaxLogSize(3);
         newChat = new List<string>();
         textSizeSlider.value = 20;
+        toggleOneLabel.text = "" + toggleOneValue;
+        toggleTwoLabel.text = "" + toggleTwoValue;
+        toggleTrdLabel.text = "" + toggleTrdValue;
+        textSizeSlider.minValue = minValue;
+        textSizeSlider.maxValue = maxValue;
     }
 
     public void Start()
     {
-        if (instance == null)
-            instance = this;
         m_Socket = new WebSocketSharp.WebSocket("ws://localhost:3000");
         m_Socket.OnMessage += Recv;
         m_Socket.Connect();
@@ -46,6 +63,19 @@ public class ChatManager : MonoBehaviour
         textSizeSlider.onValueChanged.AddListener(delegate
         {
             chatController.ChangeTextSize((int)textSizeSlider.value);
+        });
+
+        toggleOptOne.onValueChanged.AddListener(delegate
+        {
+            ToggleOptOneChanged(toggleOptOne);
+        });
+        toggleOptTwo.onValueChanged.AddListener(delegate
+        {
+            ToggleOptTwoChanged(toggleOptTwo);
+        });
+        toggleOptTrd.onValueChanged.AddListener(delegate
+        {
+            ToggleOptTrdChanged(toggleOptTrd);
         });
     }
 
@@ -83,6 +113,29 @@ public class ChatManager : MonoBehaviour
             input.text = "";
         }
         Debug.Log("Enter");
+    }
+
+
+    void ToggleOptOneChanged(Toggle change)
+    {
+        if (change.isOn)
+        {
+            chatController.SetMaxLogSize(toggleOneValue);
+        }
+    }
+    void ToggleOptTwoChanged(Toggle change)
+    {
+        if (change.isOn)
+        {
+            chatController.SetMaxLogSize(toggleTwoValue);
+        }
+    }
+    void ToggleOptTrdChanged(Toggle change)
+    {
+        if (change.isOn)
+        {
+            chatController.SetMaxLogSize(toggleTrdValue);
+        }
     }
 }
 
