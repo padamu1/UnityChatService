@@ -363,7 +363,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55064c2086f39dd4e88871de3f332b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scrollbarVerticle: {fileID: 828557115244587843}
+  scrollbarVerticle: {fileID: 828557115244587841}
   textSizeSlider: {fileID: 828557113502446589}
   initTextSliderValue: 0
   minValue: 0

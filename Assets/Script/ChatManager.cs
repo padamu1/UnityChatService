@@ -14,7 +14,7 @@ public class Data
 
 public class ChatManager : MonoBehaviour
 {
-    public Scrollbar scrollbarVerticle;
+    public GameObject scrollbarVerticle;
     public Slider textSizeSlider;
     public float initTextSliderValue;
     public float minValue;
@@ -92,9 +92,9 @@ public class ChatManager : MonoBehaviour
     }
     void FixedUpdate()
     {
-        if (chatAdd)
+        if (chatAdd & scrollbarVerticle.activeSelf)
         {
-            scrollbarVerticle.value = 0f;
+            scrollbarVerticle.GetComponent<Scrollbar>().value = 0f;
             chatAdd = false;
         }
     }
