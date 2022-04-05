@@ -14,7 +14,9 @@ public class Data
 
 public class ChatManager : MonoBehaviour
 {
+    public Scrollbar scrollbarVerticle;
     public Slider textSizeSlider;
+    public float initTextSliderValue;
     public float minValue;
     public float maxValue;
     public Transform chatField;
@@ -36,13 +38,15 @@ public class ChatManager : MonoBehaviour
     private Data data;
     private ChatController chatController;
     private WebSocketSharp.WebSocket m_Socket = null;
+    private bool chatAdd;
 
     void Awake()
     {
+        chatAdd = false;
         chatController = new ChatController();
-        chatController.SetMaxLogSize(3);
+        chatController.SetMaxLogSize(toggleTrdValue);
         newChat = new List<string>();
-        textSizeSlider.value = 20;
+        textSizeSlider.value = initTextSliderValue;
         toggleOneLabel.text = "" + toggleOneValue;
         toggleTwoLabel.text = "" + toggleTwoValue;
         toggleTrdLabel.text = "" + toggleTrdValue;
@@ -81,9 +85,17 @@ public class ChatManager : MonoBehaviour
 
     void Update()
     {
-        if(newChat.Count > 0)
+        if (newChat.Count > 0)
         {
             MakeChat(newChat[0]);
+        }
+    }
+    void FixedUpdate()
+    {
+        if (chatAdd)
+        {
+            scrollbarVerticle.value = 0f;
+            chatAdd = false;
         }
     }
     //Message handling - Create GameObject and Add chatLog
@@ -100,6 +112,7 @@ public class ChatManager : MonoBehaviour
         tempObject.SendMessage("ChangeSize", (int)textSizeSlider.value);
         chatController.SetChatLog(tempObject);
         newChat.RemoveAt(0);
+        chatAdd = true;
     }
     //Message Upload
     void LockInput(InputField input)

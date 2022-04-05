@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 public class ChatController
 {
     private List<GameObject> chatLog;
@@ -19,7 +19,8 @@ public class ChatController
         // execute below code if maxLogSize is different from before
         if (maxLogSize < chatLog.Count)
         {
-            for (int i = 0; i <= chatLog.Count - maxLogSize; i++)
+            int newCount = chatLog.Count - maxLogSize;
+            for (int i = 1; i <= newCount; i++)
             {
                 GameObject.Destroy(chatLog[0]);
                 chatLog.RemoveAt(0);

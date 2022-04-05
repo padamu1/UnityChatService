@@ -2530,8 +2530,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55064c2086f39dd4e88871de3f332b81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  scrollbarVerticle: {fileID: 350601599}
   textSizeSlider: {fileID: 1825364417}
-  minValue: 0
+  initTextSliderValue: 20
+  minValue: 10
   maxValue: 30
   chatField: {fileID: 1993192671}
   chatText: {fileID: 6746827694610321488, guid: 05819fe0b50c19a4ea34e1f179f69ee4, type: 3}
@@ -2543,8 +2545,8 @@ MonoBehaviour:
   toggleOptTrd: {fileID: 161749043}
   toggleTrdLabel: {fileID: 1887841528}
   toggleOneValue: 1
-  toggleTwoValue: 2
-  toggleTrdValue: 3
+  toggleTwoValue: 4
+  toggleTrdValue: 8
 --- !u!4 &1980333427
 Transform:
   m_ObjectHideFlags: 0
