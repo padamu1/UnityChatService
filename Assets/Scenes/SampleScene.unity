@@ -292,8 +292,16 @@ PrefabInstance:
       value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 828557113606936398, guid: 7192f556a3837e049a1575e32a28d812, type: 3}
+      propertyPath: toggleOneValue
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 828557113606936398, guid: 7192f556a3837e049a1575e32a28d812, type: 3}
       propertyPath: toggleTrdValue
       value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 828557113606936398, guid: 7192f556a3837e049a1575e32a28d812, type: 3}
+      propertyPath: toggleTwoValue
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 828557113606936398, guid: 7192f556a3837e049a1575e32a28d812, type: 3}
       propertyPath: initTextSliderValue
