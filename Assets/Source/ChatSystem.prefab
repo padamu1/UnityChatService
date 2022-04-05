@@ -2124,7 +2124,7 @@ MonoBehaviour:
   minValue: 10
   maxValue: 30
   chatField: {fileID: 3025331974522914124}
-  chatText: {fileID: 6746827694610321488, guid: 05819fe0b50c19a4ea34e1f179f69ee4, type: 3}
+  chatText: {fileID: 7383914418676754822}
   mainInputField: {fileID: 1618101006658234083}
   toggleOptOne: {fileID: 903934812613303621}
   toggleOneLabel: {fileID: 7172668833262926774}
